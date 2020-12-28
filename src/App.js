@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import {BrowserRouter as Router,Switch, Route, Redirect} from 'react-router-dom';
 import './App.css';
+import Navbar from './components/navbar';
+import Home from './pages';
+import About from './pages/about';
+import Service from './pages/service';
+import Contact from './pages/contact';
+import FormPropsTextFields from './pages/signup';
+import SignIN from './pages/signin';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar/>
+      <Switch>
+        <Route path='/' exact component={Home}/>
+        <Route path='/about' component={About}/>
+        <Route path='/services' component={Service}/>
+        <Route path='/contact-us' component={Contact}/>
+        <Route path='/signup' component={FormPropsTextFields}/>
+        <Route path='/signin' component={SignIN}/>
+        <Redirect to="/"/>
+      </Switch>
+    </Router>
   );
 }
 
